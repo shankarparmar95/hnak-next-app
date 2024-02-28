@@ -9,11 +9,107 @@ async function getUrlResolverData(url) {
     "content-type": "application/json",
     store: "default",
   };
-  const queryParam = `query getRouteData($url:String!){
-    route(url:$url){
-      redirect_code
-      relative_url
+  const queryParam = `query getRouteData($url: String!) {
+    route(url: $url) {
       type
+      __typename
+      relative_url
+      redirect_code
+      ... on BrandDetailRoute {
+        option_id
+      }
+      ... on CmsPage {
+        identifier
+        __typename
+      }
+      ... on CategoryInterface {
+        id
+        uid
+        is_enabled
+        is_landing_page
+        is_enabled
+        meta_title
+        meta_description
+        meta_keywords
+        image
+        url_path
+        __typename
+      }
+      ... on ProductInterface {
+        uid
+        sku
+        name
+        rating_summary
+        review_count
+        meta_title
+        meta_description
+        meta_keyword
+        url_key
+        small_image {
+          url
+        }
+
+        description {
+          html
+        }
+        short_description {
+          html
+        }
+        price_range {
+          maximum_price {
+            final_price {
+              currency
+              value
+            }
+            regular_price {
+              currency
+              value
+            }
+            discount {
+              amount_off
+              percent_off
+            }
+          }
+          minimum_price {
+            final_price {
+              currency
+              value
+            }
+            regular_price {
+              currency
+              value
+            }
+            discount {
+              amount_off
+              percent_off
+            }
+          }
+        }
+        media_gallery {
+          url
+          label
+          position
+          disabled
+          ... on ProductVideo {
+            video_content {
+              media_type
+              video_provider
+              video_url
+              video_title
+              video_description
+              video_metadata
+            }
+          }
+        }
+        ... on ConfigurableProduct {
+          variants {
+            product {
+              sku
+            }
+          }
+        }
+        __typename
+      }
     }
   }`;
   const variablesParams = { url };
