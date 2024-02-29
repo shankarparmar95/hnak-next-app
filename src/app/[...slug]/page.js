@@ -134,13 +134,14 @@ export default async function UrlResolver({ params }) {
   const { slug = [] } = params || {};
   const url = slug.join("/");
   const data = await getUrlResolverData(url);
-  const { type } = get(data, "data.route") || {};
+  const routeInfo = get(data, "data.route") || {};
+  const { type } = routeInfo;
 
   if (type === "PRODUCT") {
-    return <ProductDetail />;
+    return <ProductDetail routeInfo={routeInfo} />;
   }
   if (type === "CATEGORY") {
-    return <ProductListing />;
+    return <ProductListing routeInfo={routeInfo} />;
   }
 
   return <div>Page Not Found</div>;
