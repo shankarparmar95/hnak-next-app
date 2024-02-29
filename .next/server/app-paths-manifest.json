@@ -1,9 +1,9 @@
 {
-  "/[...slug]/page": "app/[...slug]/page.js",
   "/_not-found": "app/_not-found.js",
-  "/icons/apple-icon.png/route": "app/icons/apple-icon.png/route.js",
-  "/apple-icon.png/route": "app/apple-icon.png/route.js",
+  "/[...slug]/page": "app/[...slug]/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/apple-icon.png/route": "app/apple-icon.png/route.js",
+  "/icons/apple-icon.png/route": "app/icons/apple-icon.png/route.js",
   "/offline/page": "app/offline/page.js",
   "/page": "app/page.js"
 }

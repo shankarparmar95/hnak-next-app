@@ -3,45 +3,54 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-/* export const metadata = {
-  title: "HNAK PWA",
-  description: "HNAK PWA Application",
-  generator: "Next.js",
+const APP_NAME = "HNAK PWA App";
+const APP_DEFAULT_TITLE = "HNAK PWA App";
+const APP_TITLE_TEMPLATE = "%s - HNAK PWA App";
+const APP_DESCRIPTION = "Best E-commerce PWA app in the world!";
+
+export const metadata = {
+  applicationName: APP_NAME,
+  title: {
+    default: APP_DEFAULT_TITLE,
+    template: APP_TITLE_TEMPLATE,
+  },
+  description: APP_DESCRIPTION,
   manifest: "/manifest.json",
-  keywords: ["nextjs", "nextjs14", "next14", "pwa", "next-pwa"],
-  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#213352" }],
-  authors: [
-    { name: "Shankar Parmar" },
-    {
-      name: "Shankar Parmar",
-      url: "https://in.linkedin.com/in/shnky007/",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP_DEFAULT_TITLE,
+    // startUpImage: [],
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: APP_NAME,
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
     },
-  ],
-  viewport:
-    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
-  icons: [
-    { rel: "apple-touch-icon", url: "/apple-icon.png" },
-    { rel: "icon", url: "/favicon.ico" },
-  ],
-}; */
+    description: APP_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+  },
+};
+
+export const viewport = {
+  themeColor: "#213352",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="application-name" content="PWA App" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="PWA App" />
-        <meta name="description" content="Best PWA App in the world" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#2B5797" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="theme-color" content="#000000" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="manifest" href="/manifest.json" />
-      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
