@@ -25,6 +25,10 @@ export const metadata = {
   ],
 };
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
