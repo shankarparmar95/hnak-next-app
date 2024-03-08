@@ -1,7 +1,10 @@
+const createNextIntlPlugin = require("next-intl/plugin");
 const {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_BUILD,
 } = require("next/constants");
+
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -21,7 +24,7 @@ module.exports = (phase) => {
     const withPWA = require("@ducanh2912/next-pwa").default({
       dest: "public",
     });
-    return withPWA(nextConfig);
+    return withPWA(withNextIntl(nextConfig));
   }
-  return nextConfig;
+  return withNextIntl(nextConfig);
 };

@@ -1,11 +1,11 @@
-import Link from "next/link";
+"use client";
 
 export default function NotFound() {
   return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
-    </div>
+    <html>
+      <body className="text-center">
+        <h1 className="mt-10 font-semibold">Something went wrong!</h1>
+      </body>
+    </html>
   );
 }
