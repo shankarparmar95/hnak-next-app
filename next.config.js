@@ -17,6 +17,7 @@ const nextConfig = {
       },
     ],
   },
+  productionBrowserSourceMaps: false,
 };
 
 module.exports = (phase) => {
