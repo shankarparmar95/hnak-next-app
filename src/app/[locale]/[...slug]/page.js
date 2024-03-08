@@ -1,13 +1,14 @@
 import React from "react";
 import get from "lodash/get";
+import { useLocale } from "next-intl";
 import { stripIgnoredCharacters } from "graphql";
 import ProductDetail from "../components/ProductDetail";
 import ProductListing from "../components/ProductListing";
 
-async function getUrlResolverData(url) {
+async function getUrlResolverData(url, locale) {
   const headers = {
     "content-type": "application/json",
-    store: "default",
+    store: locale === "en" ? "default" : "ar_SA",
   };
   const queryParam = `query getRouteData($url: String!) {
     route(url: $url) {
@@ -131,9 +132,10 @@ async function getUrlResolverData(url) {
 }
 
 export default async function UrlResolver({ params }) {
+  const locale = useLocale();
   const { slug = [] } = params || {};
   const url = slug.join("/");
-  const data = await getUrlResolverData(url);
+  const data = await getUrlResolverData(url, locale);
   const routeInfo = get(data, "data.route") || {};
   const { type } = routeInfo;
 

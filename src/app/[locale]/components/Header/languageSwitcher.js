@@ -3,20 +3,24 @@
 import { useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const LanguageSwitcher = () => {
+  const pathname = usePathname();
   const t = useTranslations();
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const localActive = useLocale();
 
+  console.log("pathname--->", pathname);
+
   const onSelectChange = (e) => {
     const nextLocale = e.target.value;
     startTransition(() => {
-      router.replace(`/${nextLocale}`);
+      router.replace(`/${nextLocale}/menna-o-fena/prayer-needs-mof/subha-mof`);
     });
   };
+
   return (
     <label>
       <p>{t("changeLangauge")}</p>

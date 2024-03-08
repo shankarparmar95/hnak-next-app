@@ -3,12 +3,13 @@ import get from "lodash/get";
 import { stripIgnoredCharacters } from "graphql";
 import Link from "next/link";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 import classes from "./productListing.module.css";
 
-async function getCategoryData(category_id) {
+async function getCategoryData(category_id, locale) {
   const headers = {
     "content-type": "application/json",
-    store: "default",
+    store: locale === "en" ? "default" : "ar_SA",
   };
   const queryParam = `query getCategoryData($category_id: String!){
     products(filter:{
@@ -53,8 +54,9 @@ async function getCategoryData(category_id) {
 }
 
 const ProductListing = async ({ routeInfo }) => {
+  const locale = useLocale();
   const { uid } = routeInfo || {};
-  const data = await getCategoryData(uid);
+  const data = await getCategoryData(uid, locale);
   const products = get(data, "data.products.items") || [];
   return (
     <div className={classes.root}>
