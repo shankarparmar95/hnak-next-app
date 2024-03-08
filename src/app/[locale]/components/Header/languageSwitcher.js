@@ -13,11 +13,15 @@ const LanguageSwitcher = () => {
   const localActive = useLocale();
 
   console.log("pathname--->", pathname);
+  let path = "";
+  if (pathname.startsWith(`/${localActive}/`)) {
+    path = pathname.split(`/${localActive}/`)[1] || "";
+  }
 
   const onSelectChange = (e) => {
     const nextLocale = e.target.value;
     startTransition(() => {
-      router.replace(`/${nextLocale}/menna-o-fena/prayer-needs-mof/subha-mof`);
+      router.replace(`/${nextLocale}/${path}`);
     });
   };
 
