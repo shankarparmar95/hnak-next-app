@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function Page() {
-  const t = useTranslations();
+export default async function Page() {
+  const t = await getTranslations();
   return (
     <main>
       <h1>{t("appTitle")}</h1>

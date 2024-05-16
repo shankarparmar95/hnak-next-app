@@ -1,6 +1,6 @@
 import React from "react";
 import get from "lodash/get";
-import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 import { stripIgnoredCharacters } from "graphql";
 import ProductDetail from "../components/ProductDetail";
 import ProductListing from "../components/ProductListing";
@@ -132,7 +132,7 @@ async function getUrlResolverData(url, locale) {
 }
 
 export default async function UrlResolver({ params }) {
-  const locale = useLocale();
+  const locale = await getLocale();
   const { slug = [] } = params || {};
   const url = slug.join("/");
   const data = await getUrlResolverData(url, locale);

@@ -3,7 +3,7 @@ import get from "lodash/get";
 import { stripIgnoredCharacters } from "graphql";
 import Link from "next/link";
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 import classes from "./productListing.module.css";
 
 async function getCategoryData(category_id, locale) {
@@ -54,7 +54,8 @@ async function getCategoryData(category_id, locale) {
 }
 
 const ProductListing = async ({ routeInfo }) => {
-  const locale = useLocale();
+  const locale = await getLocale();
+
   const { uid } = routeInfo || {};
   const data = await getCategoryData(uid, locale);
   const products = get(data, "data.products.items") || [];

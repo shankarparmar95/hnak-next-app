@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function NotFound() {
-  const t = useTranslations("Index");
+  const t = useTranslations();
   return (
     <div>
       <h1>{t("appTitle")}</h1>
