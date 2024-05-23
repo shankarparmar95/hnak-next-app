@@ -1,9 +1,23 @@
-/* import { NextResponse } from "next/server";
+/* 
 
 const locales = ["en", "ar"];
 
 // Get the preferred locale, similar to the above or using a library
 function getLocale(request) {}
+
+export const config = {
+  matcher: [
+    // Skip all internal paths (_next)
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    // Optional: only run on root (/) URL
+    // '/'
+    "/(en|ar)/:path*",
+  ],
+};
+ */
+
+import createMiddleware from "next-intl/middleware";
+import { NextResponse } from "next/server";
 
 export function middleware(request) {
   // Check if there is any supported locale in the pathname
@@ -20,26 +34,13 @@ export function middleware(request) {
   return NextResponse.redirect(request.nextUrl);
 }
 
-export const config = {
-  matcher: [
-    // Skip all internal paths (_next)
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-    // Optional: only run on root (/) URL
-    // '/'
-    "/(en|ar)/:path*",
-  ],
-};
- */
-
-import createMiddleware from "next-intl/middleware";
-
-export default createMiddleware({
+/* export default createMiddleware({
   // A list of all locales that are supported
   locales: ["en", "ar"],
 
   // Used when no locale matches
   defaultLocale: "en",
-});
+}); */
 
 export const config = {
   // Match only internationalized pathnames
