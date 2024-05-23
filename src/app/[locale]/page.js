@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import StoreConfig from "../../components/StoreConfig";
 
 export default async function Page() {
   const t = await getTranslations();
@@ -15,6 +16,7 @@ export default async function Page() {
       <div>
         <Link href="/mma-lava-beads-jute-tassel">{t("plpLink")}</Link>
       </div>
+      <StoreConfig />
     </main>
   );
 }
