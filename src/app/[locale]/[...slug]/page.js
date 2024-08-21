@@ -4,6 +4,7 @@ import { getLocale } from "next-intl/server";
 import { stripIgnoredCharacters } from "graphql";
 import ProductDetail from "../components/ProductDetail";
 import ProductListing from "../components/ProductListing";
+import { notFound } from "next/navigation";
 
 async function getUrlResolverData(url, locale) {
   const headers = {
@@ -145,6 +146,7 @@ export default async function UrlResolver({ params }) {
   if (type === "CATEGORY") {
     return <ProductListing routeInfo={routeInfo} />;
   }
+  notFound();
 
   return <div>Page Not Found</div>;
 }

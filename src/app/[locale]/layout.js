@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { Inter } from "next/font/google";
 import Header from "./components/Header";
+import MainWrapper from "../../components/MainWrapper";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -56,8 +57,10 @@ export default function RootLayout({ children, params: { locale } }) {
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          {children}
+          <MainWrapper>
+            <Header />
+            {children}
+          </MainWrapper>
         </NextIntlClientProvider>
       </body>
     </html>
